@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class Order {
+public class OrderMaker {
     private final List<FoodItem> orderList = new ArrayList<>();
 
     public void addItem(FoodItem food){
