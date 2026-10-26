@@ -31,7 +31,7 @@ public class OrderMaker {
     }
 
     public void printReceipt(LoyaltyStatus status) {
-        System.out.println("----- Order Receipt -----");
+        System.out.println("Order Receipt:");
         for (FoodItem item : orderList) {
             System.out.printf("%-35s $%.2f%n", item.getDescription(), item.getCost());
         }
