@@ -16,4 +16,11 @@ public class FoodItemTest {
         assertEquals("Fries", fries.getDescription());
         assertEquals(2.99, fries.getCost());
     }
+    @Test
+    public void verifyToppings(){
+        assertEquals("Fries, Ketchup", new Ketchup(fries).getDescription());
+        assertEquals("Fries, Bacon", new Bacon(fries).getDescription());
+        assertEquals("Fries, Onions", new Onions(fries).getDescription());
+        assertEquals("Fries, Cheese", new Cheese(fries).getDescription());
+    }
 }
