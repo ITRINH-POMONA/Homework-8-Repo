@@ -26,5 +26,19 @@ public class Order {
         return Math.round(total * 100.0) / 100.0;
     }
 
+    public double calculateTotal(LoyaltyStatus status) {
+        return status.applyDiscount(calculateTotal());
+    }
 
+    public void printReceipt(LoyaltyStatus status) {
+        System.out.println("----- Order Receipt -----");
+        for (FoodItem item : orderList) {
+            System.out.printf("%-35s $%.2f%n", item.getDescription(), item.getCost());
+        }
+        double subtotal = calculateTotal();
+        System.out.printf("%-35s $%.2f%n", "Subtotal", subtotal);
+        System.out.printf("%-35s %s (%.0f%% off)%n", "Loyalty", status.getTier(), status.getDiscountRate() * 100);
+        System.out.printf("%-35s $%.2f%n", "TOTAL", status.applyDiscount(subtotal));
+        System.out.println();
+    }
 }
