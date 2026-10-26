@@ -55,5 +55,27 @@ public class PaymentNotificationTest {
         assertEquals(fullMessage, actualMessage);
     }
 
+    BitcoinPayment pushBitcoin = new BitcoinPayment(push, 69.99, "12345");
+
+    @Test
+    public void checkCorrectMessageBitcoin(){
+        assertEquals("Your Bitcoin payment of $69.99 from wallet 12345 has been received and confirmed.",
+                pushBitcoin.buildMessage());
+    }
+    @Test
+    public void checkCorrectAmountBitcoin(){
+        assertEquals(69.99, pushBitcoin.getAmount(), 0.0001);
+    }
+    @Test
+    public void checkChannelTypeBitcoin(){
+        assertEquals("Push", pushBitcoin.getChannel().getChannelName());
+    }
+    @Test
+    public void checkChannelMessageBitcoin(){
+        String fullMessage = "[Push to fortnite] Your Bitcoin payment of $69.99 from wallet 12345 has been received " +
+                                "and confirmed.";
+        String actualMessage = pushBitcoin.getChannel().send("fortnite", pushBitcoin.buildMessage());
+        assertEquals(fullMessage, actualMessage);
+    }
 
 }
